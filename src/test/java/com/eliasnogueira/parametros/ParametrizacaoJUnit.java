@@ -18,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
+// anotação para informar que a execução é parametrizada
 @RunWith(Parameterized.class)
 public class ParametrizacaoJUnit {
 
@@ -43,7 +44,10 @@ public class ParametrizacaoJUnit {
 	public void posCondicao() {
 		driver.quit();
 	}
-	
+
+	/*
+	 * Construtor para ligar os dados passados pelo Data Driven ao script
+	 */
 	public ParametrizacaoJUnit(String nome, String cidade, String faixaIdade, String resultado) {
 		this.nome = nome;
 		this.cidade = cidade;
@@ -63,7 +67,10 @@ public class ParametrizacaoJUnit {
 		assertEquals(faixaIdade, driver.findElement(By.cssSelector("span[ng-bind='faixaSelecionada']")).getText());
 		assertEquals(resultado, driver.findElement(By.cssSelector("span[ng-bind='retorno']")).getText());
 	}
-	
+
+	/*
+	 * Método que leva o Data Driven ao script
+	 */
 	@Parameters(name = "{index}: {0}|{1}|{2}|{3}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
