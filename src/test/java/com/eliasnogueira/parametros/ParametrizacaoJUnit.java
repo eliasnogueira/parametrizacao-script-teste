@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Collection;
 
+import com.eliasnogueira.parametros.utils.Utils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -21,15 +23,20 @@ public class ParametrizacaoJUnit {
 
 	private String nome;
 	private String cidade;
-	private String faixa;
+	private String faixaIdade;
 	private String resultado;
 	
 	private WebDriver driver;
 	
 	@Before
 	public void preCondicao() {
-		driver = new FirefoxDriver();
-		driver.get("http://eliasnogueira.com/arquivos_blog/post_parametros/");
+		// o driver do Google Chrome está vindo do arquivo de propriedades
+		System.setProperty("webdriver.chrome.driver", Utils.lerPropriedade("chromedriver.path"));
+
+		driver = new ChromeDriver();
+
+		// a URL incial para os testes está vindo do arquivo de propriedades
+		driver.get(Utils.lerPropriedade("url.inicial") + "/arquivos_blog/post_parametros/");
 	}
 	
 	@After
@@ -37,10 +44,10 @@ public class ParametrizacaoJUnit {
 		driver.quit();
 	}
 	
-	public ParametrizacaoJUnit(String nome, String cidade, String faixa, String resultado) {
+	public ParametrizacaoJUnit(String nome, String cidade, String faixaIdade, String resultado) {
 		this.nome = nome;
 		this.cidade = cidade;
-		this.faixa = faixa;
+		this.faixaIdade = faixaIdade;
 		this.resultado = resultado;
 	}
 	
@@ -48,12 +55,12 @@ public class ParametrizacaoJUnit {
 	public void testeParametrizacaoJUnit() {
 		driver.findElement(By.id("nome")).sendKeys(nome);
 		driver.findElement(By.id("cidade")).sendKeys(cidade);
-		new Select(driver.findElement(By.name("faixa"))).selectByVisibleText(faixa);
+		new Select(driver.findElement(By.name("faixa"))).selectByVisibleText(faixaIdade);
 		driver.findElement(By.cssSelector(".btn.btn-primary.nextBtn.btn-lg.pull-right")).click();
 		
 		assertEquals(nome, driver.findElement(By.cssSelector("span[ng-bind='nome']")).getText());
 		assertEquals(cidade, driver.findElement(By.cssSelector("span[ng-bind='cidade']")).getText());
-		assertEquals(faixa, driver.findElement(By.cssSelector("span[ng-bind='faixaSelecionada']")).getText());
+		assertEquals(faixaIdade, driver.findElement(By.cssSelector("span[ng-bind='faixaSelecionada']")).getText());
 		assertEquals(resultado, driver.findElement(By.cssSelector("span[ng-bind='retorno']")).getText());
 	}
 	

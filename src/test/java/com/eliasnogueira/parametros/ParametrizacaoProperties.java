@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -14,8 +15,14 @@ public class ParametrizacaoProperties {
 
 	@Test
 	public void testeProprerties() {
-		WebDriver driver = new FirefoxDriver();
-		driver.get(Utils.lerPropriedade("url.inicial"));
+
+	    // o driver do Google Chrome está vindo do arquivo de propriedades
+		System.setProperty("webdriver.chrome.driver", Utils.lerPropriedade("chromedriver.path"));
+
+		WebDriver driver = new ChromeDriver();
+
+		// a URL incial para os testes está vindo do arquivo de propriedades
+		driver.get(Utils.lerPropriedade("url.inicial") + "/arquivos_blog/post_parametros/");
 
 		driver.findElement(By.id("nome")).sendKeys("Elias");
 		driver.findElement(By.id("cidade")).sendKeys("Porto Alegre");

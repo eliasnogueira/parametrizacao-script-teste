@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 /*
@@ -15,7 +15,13 @@ public class HardCoded {
 
 	@Test
 	public void testeHardCoded() {
-		WebDriver driver = new FirefoxDriver();
+	    /*
+	     * Não esqueça de mudar o caminho para o seu arquivo chromedriver
+	     * Se você usa uma máquina Windows, deve adicionar a extensão do arquivo (chromedriver.exe)
+	     */
+		System.setProperty("webdriver.chrome.driver", "/Users/eliasnogueira/Selenium/chromedriver");
+
+		WebDriver driver = new ChromeDriver();
 		driver.get("http://eliasnogueira.com/arquivos_blog/post_parametros/");
 		
 		driver.findElement(By.id("nome")).sendKeys("Elias");
