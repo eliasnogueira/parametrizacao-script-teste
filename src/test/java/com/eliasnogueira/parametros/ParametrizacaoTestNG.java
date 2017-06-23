@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class ParametrizacaoTestNG {
 
@@ -38,10 +38,10 @@ public class ParametrizacaoTestNG {
         new Select(driver.findElement(By.name("faixa"))).selectByVisibleText(faixaIdade);
         driver.findElement(By.cssSelector(".btn.btn-primary.nextBtn.btn-lg.pull-right")).click();
 
-        assertEquals(nome, driver.findElement(By.cssSelector("span[ng-bind='nome']")).getText());
-        assertEquals(cidade, driver.findElement(By.cssSelector("span[ng-bind='cidade']")).getText());
-        assertEquals(faixaIdade, driver.findElement(By.cssSelector("span[ng-bind='faixaSelecionada']")).getText());
-        assertEquals(resultado, driver.findElement(By.cssSelector("span[ng-bind='retorno']")).getText());
+        assertEquals(driver.findElement(By.cssSelector("span[ng-bind='nome']")).getText(), nome);
+        assertEquals(driver.findElement(By.cssSelector("span[ng-bind='cidade']")).getText(), cidade);
+        assertEquals(driver.findElement(By.cssSelector("span[ng-bind='faixaSelecionada']")).getText(), faixaIdade);
+        assertEquals(driver.findElement(By.cssSelector("span[ng-bind='retorno']")).getText(), resultado);
     }
 
     @DataProvider(name = "massaDeDados")
