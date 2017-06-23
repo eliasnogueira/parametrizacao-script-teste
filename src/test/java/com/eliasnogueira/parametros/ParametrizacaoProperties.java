@@ -31,8 +31,7 @@ public class ParametrizacaoProperties {
 
 		assertEquals("Elias", driver.findElement(By.cssSelector("span[ng-bind='nome']")).getText());
 		assertEquals("Porto Alegre", driver.findElement(By.cssSelector("span[ng-bind='cidade']")).getText());
-		assertEquals("Entre 26 e 60 anos",
-				driver.findElement(By.cssSelector("span[ng-bind='faixaSelecionada']")).getText());
+		assertEquals("Entre 26 e 60 anos", driver.findElement(By.cssSelector("span[ng-bind='faixaSelecionada']")).getText());
 		assertEquals("Os juros serão de 30%", driver.findElement(By.cssSelector("span[ng-bind='retorno']")).getText());
 
 		driver.quit();
