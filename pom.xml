@@ -6,38 +6,47 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Parametrização de Dados em Scripts de Teste</name>
 
-	<dependencies>
+    <properties>
+        <junit-version>4.12</junit-version>
+        <testng-version>6.11</testng-version>
+        <selenium-version>3.5.3</selenium-version>
+        <junit-params>1.1.0</junit-params>
+    </properties>
+
+    <dependencies>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>6.11</version>
+			<version>${testng-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>3.4.0</version>
+			<version>${selenium-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-			<version>3.4.0</version>
+			<version>${selenium-version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>pl.pragmatists</groupId>
-			<artifactId>JUnitParams</artifactId>
-			<version>1.0.5</version>
-		</dependency>
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <version>${junit-params}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
 
-	</dependencies>
 </project>
