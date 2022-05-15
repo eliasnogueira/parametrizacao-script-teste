@@ -7,7 +7,7 @@
 	<name>Parametrização de Dados em Scripts de Teste</name>
 
     <properties>
-        <junit-version>4.12</junit-version>
+        <junit-version>4.13.1</junit-version>
         <testng-version>6.11</testng-version>
         <selenium-version>3.5.3</selenium-version>
         <junit-params>1.1.0</junit-params>
